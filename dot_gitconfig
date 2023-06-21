@@ -1,0 +1,19 @@
+[user]
+  name = Riccardo Quercetti
+  email = riccardo.quercetti.93@gmail.com
+[init]
+  defaultBranch = main
+[alias]
+  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %s %C(dim)- %an%C(reset)'
+  lg2 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s%Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+#[code]
+#  pager = diff-so-fancy | less --tabs=4 -RFX
+[pull]
+  rebase = true
+[color]
+  ui = auto
+[credential]
+  helper = /usr/lib/git-core/git-credential-libsecret
+
+[includeIf "gitdir:~/Revolt/"]
+  path = ~/Revolt/.gitconfig

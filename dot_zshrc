@@ -1,0 +1,131 @@
+
+#!/bin/bash
+
+#
+# Environment variables (since .profile does not work anymore)
+#
+
+EDITOR="micro"
+VISUAL=$EDITOR
+
+#
+# Starship
+#
+
+eval "$(starship init zsh)"
+
+#
+# oh-my-zsh
+#
+
+ZSH=~/.oh-my-zsh
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+zstyle ':omz:update' frequency 1
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Uncomment the following line if you want that foreground processes sent to the
+# background (i.e. by using "Ctrl + z") are not paused.
+# Quero: do you still need to make use "disown" then?
+#AUTO_CONTINUE="true"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git history-substring-search fzf zoxide z)
+
+# Load oh-my-zsh
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+    mkdir "$ZSH_CACHE_DIR"
+fi
+source $ZSH/oh-my-zsh.sh
+
+
+#
+# Aliases
+#
+
+alias zshrc='$EDITOR ~/.zshrc && source ~/.zshrc'
+
+alias fonts='fc-list'
+
+alias hlsblk='lsblk --output NAME,PARTLABEL,FSTYPE,UUID,MAJ:MIN,RM,SIZE,RO,MOUNTPOINT'
+
+alias nvrun='env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME="nvidia" __VK_LAYER_NV_optimus="NVIDIA_only" __GL_SHOW_GRAPHICS_OSD=1'
+
+alias open='xdg-open'
+alias mime='file --mime-type'
+function mime-default {
+    xdg-mime query default $(xdg-mime query filetype $1)
+}
+function mime-set-default {
+    xdg-mime default $1 $(xdg-mime query filetype $2)
+}
+
+alias rg='rg --hidden --smart-case'
+
+alias fd='fd --hidden --ignore-case --follow'
+
+alias rm='rm -rf'
+
+alias cp='cp -r'
+
+alias mkdir='mkdir -p'
+
+alias grep='grep -i'
+
+alias l='exa --long --header --git --icons'
+alias ll='exa --long --header --git --icons --all'
+alias tree='exa --tree --long --level 2'
+alias tree='exa --tree --long --all --level 2'
+
+alias pacremorph='pacman -Qqtd | sudo pacman -Rssnu -'
+
+alias dockerc="docker compose"
+function dockerd() {
+    systemctl $1 docker.service
+}
