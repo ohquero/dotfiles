@@ -6,6 +6,18 @@ Host bomber
     Hostname 192.168.1.254
     IdentityFile ~/.ssh/keys/Bomber
 
+Host bitbucket.org
+	User git
+	IdentityFile ~/.ssh/keys/riccardoquercetti@bitbucket.org
+    
+Host github.com
+	User git
+	IdentityFile ~/.ssh/keys/riccardoquercetti@github.com
+
+Host gitlab.com
+	User git
+	IdentityFile ~/.ssh/keys/riccardoquercetti@gitlab.com
+
 # add this at the end of ~/.ssh/config file to prevent use keys for non config servers
 Host *
   IdentitiesOnly=yes
