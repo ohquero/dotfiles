@@ -6,23 +6,21 @@ Host 139-162-152-145.ip.linodeusercontent.com
   User git
   IdentityFile ~/Revolt/.ssh/keys/git.revoltsrl.it
 
-Host vm.git.revoltsrl.it
-  Hostname 139.162.152.145
+Host vm.git.revoltsrl.com
+  #Hostname 139.162.152.145
+  Hostname 139-162-152-145.ip.linodeusercontent.com
   User revoltsrl
   IdentityFile ~/Revolt/.ssh/keys/vm.git.revoltsrl.it
 
-Host hansel.revoltsrl.it
-  Hostname 5.61.219.58
+Host hansel.m.revoltsrl.com
   User quero
   IdentityFile ~/Revolt/.ssh/keys/hansel.metal.revoltsrl.it
   Port 22001
 
-Host vpn.revoltsrl.it
-  Hostname 5.61.219.58
+Host vpn.revoltsrl.com
+  Hostname hansel.m.revoltsrl.com
   User quero
   IdentityFile ~/Revolt/.ssh/keys/hansel.metal.revoltsrl.it
   Port 22001
-  ForkAfterAuthentication yes
   ExitOnForwardFailure yes
-  RemoteCommand bash
   LocalForward 2900 localhost:8900  # Vaultwarden

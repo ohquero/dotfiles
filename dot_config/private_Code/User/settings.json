@@ -38,5 +38,5 @@
   "window.title": "${rootPath}${separator}Code",
   "breadcrumbs.enabled": false,
   "editor.renderLineHighlight": "none",
-  "terminal.external.linuxExec": "kitty",
+  "terminal.external.linuxExec": "tilix",
 }
