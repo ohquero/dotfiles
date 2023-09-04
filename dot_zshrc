@@ -46,10 +46,10 @@ alias nvrun='env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME="nvidia" 
 alias open='xdg-open'
 alias mime='file --mime-type'
 function mime-default {
-    xdg-mime query default $(xdg-mime query filetype $1)
+  xdg-mime query default "$(xdg-mime query filetype "$1")"
 }
 function mime-set-default {
-    xdg-mime default $1 $(xdg-mime query filetype $2)
+  xdg-mime default "$1" "$(xdg-mime query filetype "$2")"
 }
 
 alias rg='rg --hidden --smart-case'
@@ -73,8 +73,12 @@ alias pacremorph='pacman -Qqtd | sudo pacman -Rssnu -'
 
 alias dockerc="docker compose"
 function dockerd() {
-    systemctl $1 docker.service
+  systemctl "$1" docker.service
 }
+
+if [[ "$TERM" == "xterm-kitty" ]]; then
+  alias diff='kitty +kitten diff'
+fi
 
 
 #
