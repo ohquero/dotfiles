@@ -2,9 +2,9 @@ Host comodi.revoltsrl.it
   User quero
   IdentityFile ~/Revolt/.ssh/keys/ComodiServer
 
-Host 139-162-152-145.ip.linodeusercontent.com
+Host git.revoltsrl.com
   User git
-  IdentityFile ~/Revolt/.ssh/keys/git.revoltsrl.it
+  IdentityFile ~/Revolt/.ssh/keys/git.revoltsrl.com
 
 Host vm.git.revoltsrl.com
   #Hostname 139.162.152.145

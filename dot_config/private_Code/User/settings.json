@@ -1,6 +1,6 @@
 {
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-  "terminal.integrated.lineHeight": 1.4,
+  "terminal.integrated.lineHeight": 1.2,
   "editor.fontFamily": "FantasqueSansM Nerd Font",
   "editor.fontSize": 14,
   "editor.lineHeight": 1.4,
@@ -39,4 +39,5 @@
   "breadcrumbs.enabled": false,
   "editor.renderLineHighlight": "none",
   "terminal.external.linuxExec": "tilix",
+  "workbench.colorTheme": "Alabaster",
 }
