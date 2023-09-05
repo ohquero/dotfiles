@@ -11,7 +11,7 @@
   "editor.renderWhitespace": "boundary",
   "files.insertFinalNewline": true,
   "python.venvFolders": [
-    "~/.local/share/virtualenvs/",
+    "~/.local/share/pypoetry/virtualenvs/",
   ],
   "editor.minimap.enabled": false,
   "security.workspace.trust.enabled": false,
@@ -39,5 +39,5 @@
   "breadcrumbs.enabled": false,
   "editor.renderLineHighlight": "none",
   "terminal.external.linuxExec": "tilix",
-  "workbench.colorTheme": "Alabaster",
+  "workbench.colorTheme": "Default Light Modern",
 }
