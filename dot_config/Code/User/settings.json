@@ -11,7 +11,7 @@
   "editor.renderWhitespace": "boundary",
   "files.insertFinalNewline": true,
   "python.venvFolders": [
-    "~/.local/share/pypoetry/virtualenvs/",
+    "~/.local/share/pypoetry/virtualenvs",
   ],
   "editor.minimap.enabled": false,
   "security.workspace.trust.enabled": false,
@@ -30,6 +30,17 @@
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker",
   },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
   "ruff.showNotifications": "onWarning",
   "git.openRepositoryInParentFolders": "never",
   "hediet.vscode-drawio.theme": "min",
@@ -39,5 +50,6 @@
   "breadcrumbs.enabled": false,
   "editor.renderLineHighlight": "none",
   "terminal.external.linuxExec": "tilix",
-  "workbench.colorTheme": "Default Light Modern",
+  "redhat.telemetry.enabled": false,
+  "workbench.colorTheme": "Adwaita Dark & colorful status bar",
 }
