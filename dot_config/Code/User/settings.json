@@ -51,5 +51,4 @@
   "editor.renderLineHighlight": "none",
   "terminal.external.linuxExec": "tilix",
   "redhat.telemetry.enabled": false,
-  "workbench.colorTheme": "Adwaita Dark & colorful status bar",
 }
