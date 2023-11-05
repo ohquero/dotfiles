@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 #
 # Environment variables
 #
@@ -18,13 +20,22 @@ eval "$(starship init zsh)"
 # Zap
 #
 
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+if [[ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/zap" ]]; then
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+fi
+source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 # Plugins
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
+
+
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # Load and initialise completion system
 autoload -Uz compinit
@@ -132,7 +143,7 @@ if [[ -n "${terminfo[kcuu1]}" ]]; then
   autoload -U up-line-or-beginning-search
   zle -N up-line-or-beginning-search
 
-  bindkey "$terminfo[kcuu1]" history-substring-search-up
+  bindkey "${terminfo[kcuu1]}" history-substring-search-up
   #bindkey -M emacs "${terminfo[kcuu1]}" up-line-or-beginning-search
   #bindkey -M viins "${terminfo[kcuu1]}" up-line-or-beginning-search
   #bindkey -M vicmd "${terminfo[kcuu1]}" up-line-or-beginning-search
@@ -142,7 +153,7 @@ if [[ -n "${terminfo[kcud1]}" ]]; then
   autoload -U down-line-or-beginning-search
   zle -N down-line-or-beginning-search
 
-  bindkey "$terminfo[kcud1]" history-substring-search-down
+  bindkey "${terminfo[kcud1]}" history-substring-search-down
   #bindkey -M emacs "${terminfo[kcud1]}" down-line-or-beginning-search
   #bindkey -M viins "${terminfo[kcud1]}" down-line-or-beginning-search
   #bindkey -M vicmd "${terminfo[kcud1]}" down-line-or-beginning-search
