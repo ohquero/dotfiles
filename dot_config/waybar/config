@@ -1,0 +1,233 @@
+{
+    "layer": "top",
+
+    "position": "top",
+
+    "margin-left": 10,
+    "margin-bottom": -5,
+    "margin-right": 10,
+
+    "spacing": 5,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/media",
+        "custom/pacman",
+        "tray"
+    ],
+    "modules-center": [
+        "clock",
+        "custom/weather",
+        "custom/gammastep"
+    ],
+    "modules-right": [
+        "custom/keyboard",
+        "backlight",
+        "wireplumber",
+        "cpu",
+        "memory",
+        "network",
+        "battery",
+        "custom/power"
+    ],
+
+    "custom/separator": {
+        "format": " | ",
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{: %e %b    %H:%M:%S }",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "today-format": "<b>{}</b>"
+    },
+
+    "temperature": {
+        "interval": 4,
+        "critical-threshold": 80,
+        "format-critical": "  {temperatureC}°C",
+        "format": "{icon}  {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "max-length": 7,
+        "min-length": 7,
+        "on-click": "xsensors"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "  {used:0.2f} | {total:0.0f} GB"
+    },
+
+    "battery": {
+        "interval": 2,
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󱄇 {capacity}%",
+        "format-icons": [
+            "󰁻",
+            "󰁽",
+            "󰁿",
+            "󰂁",
+            "󰁹"
+        ]
+    },
+
+    "network": {
+        "format-wifi": " {essid} ({signalStrength}%)",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format": "",
+        "format-disconnected": "",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
+        "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)",
+        "tooltip-format": " {bandwidthUpBits}  {bandwidthDownBits}\n{ifname}\n{ipaddr}/{cidr}\n",
+        "tooltip-format-wifi": " {essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "interval": 10
+    },
+
+    "custom/storage": {
+        "format": " {}",
+        "format-alt": "{percentage}% ",
+        "format-alt-click": "click-right",
+        "return-type": "json",
+        "interval": 60,
+        "exec": "~/.config/waybar/modules/storage.sh"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon}  {percent}%",
+        "format-alt": "{percent}% {icon}",
+        "format-alt-click": "click-right",
+        "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
+        "on-scroll-down": "brightnessctl s 5%-",
+        "on-scroll-up": "brightnessctl s +5%"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": "true"
+    },
+
+    "custom/pacman": {
+        "format": "󰏕   {}",
+        "interval": 3600,
+        "exec": "paru -Sy && paru -Qu | wc -l",
+        "exec-if": "exit 0",
+        "on-click": "alacritty -e 'paru -Syuu'; pkill -SIGRTMIN+8 waybar",
+        "signal": 8,
+        "max-length": 5,
+        "min-length": 3
+    },
+
+    "custom/media": {
+        "format": "{icon}  {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": " ",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "~/.config/waybar/modules/mediaplayer.py 2> /dev/null"
+    },
+
+    "custom/power": {
+        "format": " ",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+
+    "cpu": {
+        "interval": 1,
+        "format": "  {max_frequency}GHz <span color=\"darkgray\"> | {usage}%</span>",
+        "max-length": 13,
+        "min-length": 13
+    },
+
+    "custom/keyboard": {
+        "format": "  {}",
+        "interval": 1,
+        "exec": "localectl status | grep 'X11 Layout' | cut -f2 -d':' | tr -d '[:space:]'"
+    },
+
+    "hyprland/workspaces": {
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10"
+        },
+        "on-scroll-up": "hyprctl dispatch workspace r+1 1>/dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace r-1 1>/dev/null",
+        "sort-by-number": true,
+        "active-only": false
+    },
+
+    "pulseaudio": {
+        "scroll-step": 3,
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "amixer sset Master toggle"
+    },
+
+    "wireplumber": {
+        "on-click": "pavucontrol",
+        "on-click-right": "amixer sset Master toggle 1>/dev/null",
+        //on-click: "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        //on-scroll-down: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04+";
+        //on-scroll-up: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04-";
+        "format": "<span foreground='#fab387'>{icon}</span>  {volume}%",
+        "format-muted": "MUTED ",
+        "format-source": "",
+        "format-source-muted": "",
+        //"format-muted": "<span foreground='#fab387'> </span>",
+        //"format-icons": [ "<span foreground='#fab387'></span>" ]
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": "HF ",
+            "headset": "󰋎 ",
+            "phone": " ",
+            "portable": "PRT ",
+            "car": " ",
+            "default": [" ", " ", " "]
+        }
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 5
+    }
+}
