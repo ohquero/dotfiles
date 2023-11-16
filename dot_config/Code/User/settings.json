@@ -49,6 +49,7 @@
   "window.title": "${rootPath}${separator}Code",
   "breadcrumbs.enabled": false,
   "editor.renderLineHighlight": "none",
-  "terminal.external.linuxExec": "tilix",
+  "terminal.external.linuxExec": "alacritty",
   "redhat.telemetry.enabled": false,
+  "workbench.colorTheme": "Nord Deep",
 }
