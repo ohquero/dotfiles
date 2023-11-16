@@ -1,233 +1,173 @@
 {
     "layer": "top",
-
     "position": "top",
-
-    "margin-left": 10,
-    "margin-bottom": -5,
-    "margin-right": 10,
-
+    "exclusive": true,
+    "passthrough": false,
     "spacing": 5,
-
+    "fixed-center": true,
     "modules-left": [
+        "custom/logo",
         "hyprland/workspaces",
-        "custom/media",
         "custom/pacman",
         "tray"
     ],
     "modules-center": [
         "clock",
-        "custom/weather",
-        "custom/gammastep"
+        "custom/date"
     ],
     "modules-right": [
-        "custom/keyboard",
+        "backlight#ddcci1",
         "backlight",
-        "wireplumber",
-        "cpu",
-        "memory",
+        "pulseaudio",
         "network",
-        "battery",
-        "custom/power"
+        "hyprland/language"
     ],
-
-    "custom/separator": {
-        "format": " | ",
+    "custom/pacman": {
+        "format": "󰏕  {}",
+        "interval": 10,
+        "exec": "checkupdates | wc -l",
+        "exec-if": "exit 0",
+        "on-click": "alacritty -e 'paru -Syuu'; pkill -SIGRTMIN+8 waybar",
         "tooltip": false
     },
-
-    "clock": {
-        "format": "{: %e %b    %H:%M:%S }",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
-        "today-format": "<b>{}</b>"
-    },
-
-    "temperature": {
-        "interval": 4,
-        "critical-threshold": 80,
-        "format-critical": "  {temperatureC}°C",
-        "format": "{icon}  {temperatureC}°C",
-        "format-icons": ["", "", ""],
-        "max-length": 7,
-        "min-length": 7,
-        "on-click": "xsensors"
-    },
-
-    "memory": {
+    "disk": {
         "interval": 30,
-        "format": "  {used:0.2f} | {total:0.0f} GB"
+        "format": "󰋊 {used}",
+        "format-alt": "󰋊 {total}",
+        "path": "/"
     },
-
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "  {percent}%",
+        "tooltip": false
+    },
+    "backlight#ddcci1": {
+        "device": "ddcci1",
+        "format": "󰍹  {percent}%",
+        "scroll-step": 10,
+        "tooltip": false
+    },
     "battery": {
-        "interval": 2,
+        "interval": 60,
         "states": {
-            "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󱄇 {capacity}%",
+        "format-alt": "{time}",
+        "format-time": "{H}h {M}min",
         "format-icons": [
-            "󰁻",
-            "󰁽",
-            "󰁿",
-            "󰂁",
-            "󰁹"
-        ]
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "max-length": 25
     },
-
     "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format": "",
-        "format-disconnected": "",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
-        "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)",
-        "tooltip-format": " {bandwidthUpBits}  {bandwidthDownBits}\n{ifname}\n{ipaddr}/{cidr}\n",
-        "tooltip-format-wifi": " {essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}",
-        "interval": 10
+        "interface": "wlp3s0",
+        "format": "{ifname}",
+        "format-wifi": " {essid}",
+        "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+        "format-disconnected": "", //An empty format will hide the module.
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
     },
-
-    "custom/storage": {
-        "format": " {}",
-        "format-alt": "{percentage}% ",
-        "format-alt-click": "click-right",
-        "return-type": "json",
-        "interval": 60,
-        "exec": "~/.config/waybar/modules/storage.sh"
+    "custom/logo": {
+        "format": "󰣇",
+        "on-click": "ulauncher-toggle",
+        "tooltip": false
     },
-
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon}  {percent}%",
-        "format-alt": "{percent}% {icon}",
-        "format-alt-click": "click-right",
-        "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
-        "on-scroll-down": "brightnessctl s 5%-",
-        "on-scroll-up": "brightnessctl s +5%"
+    "custom/micro": {
+        "exec": "sleep 0.1 && ~/.config/waybar/micro.sh",
+        "restart-interval": 1,
+        "on-click": "~/.config/waybar/micro1.sh",
+        "tooltip": false
     },
-
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        },
-        "tooltip": "true"
+    "custom/powermenu": {
+        "format": "",
+        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/powermenu.sh",
+        "tooltip": false
     },
-
-    "custom/pacman": {
-        "format": "󰏕   {}",
-        "interval": 3600,
-        "exec": "paru -Sy && paru -Qu | wc -l",
-        "exec-if": "exit 0",
-        "on-click": "alacritty -e 'paru -Syuu'; pkill -SIGRTMIN+8 waybar",
-        "signal": 8,
-        "max-length": 5,
-        "min-length": 3
+    "custom/swaync": {
+        "format": "󰂚",
+        "on-click": "swaync-client -t",
+        "tooltip": false
     },
-
-    "custom/media": {
-        "format": "{icon}  {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": " ",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "~/.config/waybar/modules/mediaplayer.py 2> /dev/null"
+    "custom/weather": {
+        "format": "{}",
+        "interval": 10,
+        "exec": "~/.config/waybar/weather.sh",
+        "tooltip": false
     },
-
-    "custom/power": {
-        "format": " ",
-        "tooltip": false,
-        "on-click": "wlogout"
-    },
-
-    "cpu": {
+    "custom/music": {
+        "max-length": 64,
+        "format": "{}",
         "interval": 1,
-        "format": "  {max_frequency}GHz <span color=\"darkgray\"> | {usage}%</span>",
-        "max-length": 13,
-        "min-length": 13
+        "exec": "~/.config/waybar/music.sh",
+        "tooltip": false
     },
-
-    "custom/keyboard": {
-        "format": "  {}",
-        "interval": 1,
-        "exec": "localectl status | grep 'X11 Layout' | cut -f2 -d':' | tr -d '[:space:]'"
+    "custom/date": {
+        "format": "{}",
+        "exec": " date +'󰃭 %a %d %b' ",
+        "tooltip": false
     },
-
-    "hyprland/workspaces": {
-        "all-outputs": false,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "10": "10"
-        },
-        "on-scroll-up": "hyprctl dispatch workspace r+1 1>/dev/null",
-        "on-scroll-down": "hyprctl dispatch workspace r-1 1>/dev/null",
-        "sort-by-number": true,
-        "active-only": false
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
     },
-
+    "clock": {
+        "format": "{: %H:%M}"
+    },
     "pulseaudio": {
-        "scroll-step": 3,
-        "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "󰸈",
         "format-icons": {
-            "headphone": "",
+            "headphone": "",
             "hands-free": "",
             "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
-        "on-click": "pavucontrol",
-        "on-click-right": "amixer sset Master toggle"
+        "on-click": "pamixer --toggle-mute",
+        "on-click-right": "pavucontrol",
+        "tooltip": false
     },
-
-    "wireplumber": {
-        "on-click": "pavucontrol",
-        "on-click-right": "amixer sset Master toggle 1>/dev/null",
-        //on-click: "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        //on-scroll-down: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04+";
-        //on-scroll-up: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04-";
-        "format": "<span foreground='#fab387'>{icon}</span>  {volume}%",
-        "format-muted": "MUTED ",
-        "format-source": "",
-        "format-source-muted": "",
-        //"format-muted": "<span foreground='#fab387'> </span>",
-        //"format-icons": [ "<span foreground='#fab387'></span>" ]
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": "HF ",
-            "headset": "󰋎 ",
-            "phone": " ",
-            "portable": "PRT ",
-            "car": " ",
-            "default": [" ", " ", " "]
-        }
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 60
     },
-
-    "tray": {
-        "icon-size": 16,
-        "spacing": 5
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "en",
+        "format-ru": "ru",
+        "on-click": "hyprctl switchxkblayout company--usb-device- next"
+    },
+    "hyprland/workspaces": {
+        "format": "<span font='10'>{name}</span>",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+    "custom/cava": {
+        "exec": "cava -p ~/.config/cava/config1 | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
+        "tooltip": false
+    },
+    "custom/mako": {
+        "exec": "~/.config/hypr/scripts/check_mako_mode.sh",
+        "on-click": "~/.config/hypr/scripts/do-not-disturb.sh",
+        "restart-interval": 1,
+        "tooltip": false
     }
 }
