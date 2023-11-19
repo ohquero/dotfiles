@@ -1,4 +1,4 @@
 cache-dir = "/home/quero/.cache/pypoetry"
 virtualenvs.path = "/home/quero/.local/share/pypoetry/virtualenvs"
 virtualenvs.prompt = "{project_name}-py{python_version}"
-virtualenvs.prefer-active-python = true
+# virtualenvs.prefer-active-python = true

@@ -39,7 +39,6 @@
       "comments": false,
       "strings": true
     },
-    "editor.defaultFormatter": "redhat.vscode-yaml",
   },
   "ruff.showNotifications": "onWarning",
   "git.openRepositoryInParentFolders": "never",
