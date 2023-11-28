@@ -1,8 +1,14 @@
 Include ~/Revolt/.ssh/config
 Include ~/University/Thesis/.ssh/config
 
-Host Bomber
-  IdentityFile ~/.ssh/keys/debian@Bomber
+Host bomber
+  Hostname 192.168.1.15
+  IdentityFile ~/.ssh/keys/quero@Bomber
+
+Host bomber-root
+  User root
+  Hostname 192.168.1.15
+  IdentityFile ~/.ssh/keys/quero@Bomber
 
 Host bitbucket.org
   User git
