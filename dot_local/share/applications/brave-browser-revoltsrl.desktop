@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=Brave
+Name=Revolt s.r.l. - Brave
 # Only KDE 4 seems to use GenericName, so we reuse the KDE strings.
 # From Ubuntu's language-pack-kde-XX-base packages, version 9.04-20090413.
 GenericName=Web Browser
@@ -108,7 +108,7 @@ Comment[zh_TW]=連線到網際網路
 StartupNotify=true
 StartupWMClass=brave-browser
 TryExec=brave
-Exec=brave --profile-directory="Default" %U
+Exec=brave --profile-directory="Profile-RevoltSRL" %U
 Terminal=false
 Icon=brave-desktop
 Type=Application
@@ -168,7 +168,7 @@ Name[uk]=Нове вікно
 Name[vi]=Cửa sổ Mới
 Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
-Exec=brave --profile-directory="Default"
+Exec=brave --profile-directory="Profile-RevoltSRL"
 
 [Desktop Action new-private-window]
 Name=New Incognito Window
@@ -220,6 +220,5 @@ Name[uk]=Нове вікно в режимі анонімного перегля
 Name[vi]=Cửa sổ ẩn danh mới
 Name[zh_CN]=新建隐身窗口
 Name[zh_TW]=新增無痕式視窗
-Exec=brave --profile-directory="Default" --incognito
+Exec=brave --profile-directory="Profile-RevoltSRL" --incognito
 X-MimeType=x-scheme-handler/unknown;x-scheme-handler/about;text/html;text/xml;application/xhtml_xml;image/webp;x-scheme-handler/http;x-scheme-handler/https;
-MimeType=x-scheme-handler/mailto;

@@ -53,5 +53,5 @@
   "editor.renderLineHighlight": "none",
   "terminal.external.linuxExec": "alacritty",
   "redhat.telemetry.enabled": false,
-  "workbench.colorTheme": "Nord Deep",
+  "workbench.colorTheme": "Nord Aurora Darker",
 }
