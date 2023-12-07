@@ -128,14 +128,14 @@ bindkey '^[[6~' down-line-or-history
 # if [[ -n "${terminfo[kcuu1]}" ]]; then
   autoload -U up-line-or-beginning-search
   zle -N up-line-or-beginning-search
-  bindkey '^[[A' history-substring-search-up
+  bindkey "${terminfo[kcuu1]}" history-substring-search-up
 # fi
 
 # Start typing + [Down-Arrow] - fuzzy find history backward
 # if [[ -n "${terminfo[kcud1]}" ]]; then
   autoload -U down-line-or-beginning-search
   zle -N down-line-or-beginning-search
-  bindkey '^[[B' history-substring-search-down
+  bindkey "${terminfo[kcud1]}" history-substring-search-down
 # fi
 
 # [Home] - Go to beginning of line
@@ -183,10 +183,6 @@ bindkey '^[[3;5~' kill-line
 
 # # file rename magick
 # bindkey "^[m" copy-prev-shell-word
-
-# # zsh-history-substring-search keybinding
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
 
 # consider emacs keybindings:
 
