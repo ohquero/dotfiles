@@ -9,14 +9,15 @@
         "custom/logo",
         "hyprland/workspaces",
         "custom/pacman",
-        "tray"
+        "tray",
+        "custom/mediaplayers"
     ],
     "modules-center": [
         "clock",
         "custom/date"
     ],
     "modules-right": [
-        "backlight#ddcci1",
+        "backlight#hdmi-a-1",
         "backlight",
         "pulseaudio",
         "network",
@@ -24,11 +25,20 @@
     ],
     "custom/pacman": {
         "format": "󰏕  {}",
-        "interval": 10,
-        "exec": "checkupdates | wc -l",
-        "exec-if": "exit 0",
-        "on-click": "alacritty -e 'paru -Syuu'; pkill -SIGRTMIN+8 waybar",
+        "interval": 1800,
+        "exec": "/home/quero/.config/waybar/scripts/checkupdates.sh",
         "tooltip": false
+    },
+    "custom/mediaplayers": {
+        "format": "{icon}  {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": " ",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "~/.config/waybar/scripts/mediaplayer.py 2>/dev/null"
     },
     "disk": {
         "interval": 30,
@@ -41,8 +51,8 @@
         "format": "  {percent}%",
         "tooltip": false
     },
-    "backlight#ddcci1": {
-        "device": "ddcci1",
+    "backlight#hdmi-a-1": {
+        "device": "ddcci5",
         "format": "󰍹  {percent}%",
         "scroll-step": 10,
         "tooltip": false
