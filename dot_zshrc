@@ -1,6 +1,13 @@
 #!/usr/bin/zsh
 
 #
+# Pyenv
+#
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+#
 # Environment variables
 #
 
@@ -67,7 +74,7 @@ alias rg='rg --hidden --smart-case'
 
 alias fd='fd --hidden --ignore-case --follow'
 
-alias rm='rm -rf'
+alias rm='trash -r'
 
 alias cp='cp -r'
 
