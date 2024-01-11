@@ -1,0 +1,41 @@
+[colors.bright]
+black = "#4C566A"
+blue = "#88C0D0"
+cyan = "#B48EAD"
+green = "#A3BE8C"
+magenta = "#D08770"
+red = "#BF616A"
+white = "#D8DEE9"
+yellow = "#EBCB8B"
+
+[colors.normal]
+black = "#4C566A"
+blue = "#88C0D0"
+cyan = "#B48EAD"
+green = "#A3BE8C"
+magenta = "#D08770"
+red = "#BF616A"
+white = "#D8DEE9"
+yellow = "#EBCB8B"
+
+[colors.primary]
+background = "#232731"
+foreground = "#ECEFF4"
+
+[font]
+size = 10.5
+
+[font.normal]
+family = "FantasqueSansM Nerd Font"
+
+[font.offset]
+x = 0
+y = 2
+
+[window.dimensions]
+columns = 115
+lines = 30
+
+[window.padding]
+x = 5
+y = 2
