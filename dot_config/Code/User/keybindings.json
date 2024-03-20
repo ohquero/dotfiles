@@ -3,5 +3,19 @@
     {
         "key": "ctrl+\\",
         "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+k s",
+        "command": "editor.action.sourceAction"
+    },
+    {
+        "key": "ctrl+k a",
+        "command": "editor.action.refactor",
+        "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "-editor.action.refactor",
+        "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
     }
 ]

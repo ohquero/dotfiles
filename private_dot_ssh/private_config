@@ -2,25 +2,25 @@ Include ~/Revolt/.ssh/config
 Include ~/University/Thesis/.ssh/config
 
 Host bomber
-  IdentityFile ~/.ssh/keys/quero@Bomber
+  User user
+#  IdentityFile ~/.ssh/keys/quero@Bomber
 
 Host bomber-root
   User root
-  Hostname 192.168.1.15
-  IdentityFile ~/.ssh/keys/quero@Bomber
+#  IdentityFile ~/.ssh/keys/quero@Bomber
 
 Host bitbucket.org
   User git
-  IdentityFile ~/.ssh/keys/riccardoquercetti@bitbucket.org
+#  IdentityFile ~/.ssh/keys/riccardoquercetti@bitbucket.org
     
 Host github.com
   User git
-  IdentityFile ~/.ssh/keys/riccardoquercetti@github.com
+#  IdentityFile ~/.ssh/keys/riccardoquercetti@github.com
 
 Host gitlab.com
   User git
-  IdentityFile ~/.ssh/keys/riccardoquercetti@gitlab.com
+#  IdentityFile ~/.ssh/keys/riccardoquercetti@gitlab.com
 
 # add this at the end of ~/.ssh/config file to prevent use keys for non config servers
-Host *
-  IdentitiesOnly=yes
+#Host *
+#  IdentitiesOnly=yes

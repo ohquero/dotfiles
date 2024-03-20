@@ -1,13 +1,6 @@
 #!/usr/bin/zsh
 
 #
-# Pyenv
-#
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-#
 # Environment variables
 #
 
@@ -86,8 +79,6 @@ alias l='exa --long --header --git --icons'
 alias ll='exa --long --header --git --icons --all'
 alias tree='exa --tree --long --level 2'
 alias tree='exa --tree --long --all --level 2'
-
-alias pacremorph='pacman -Qqtd | sudo pacman -Rssnu -'
 
 alias dockerc="docker compose"
 function dockerd() {
